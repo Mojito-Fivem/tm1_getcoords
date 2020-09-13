@@ -10,11 +10,12 @@ end)
 RegisterNetEvent('tm1_getcoords')
 AddEventHandler('tm1_getcoords', function()
     local x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
-    local codeA = "{x = "..round(x,2)..",  y = "..round(y,2)..",  z = "..round(z,2).."},"
+    local h = GetEntityHeading(GetPlayerPed(-1))
+    local codeA = "{x = "..round(x,2)..",  y = "..round(y,2)..",  z = "..round(z,2)..",  h = "..round(h,2).."},"
     ESX.UI.Menu.Open(
         'dialog', GetCurrentResourceName(), 'codemenu',
         {
-          title = "Nombre"
+          title = "Name"
         },
         function(data, menu)
             local name = data.value
@@ -34,7 +35,7 @@ AddEventHandler('tm1_getcoords1', function()
     ESX.UI.Menu.Open(
         'dialog', GetCurrentResourceName(), 'codemenu',
         {
-          title = "Nombre"
+          title = "Name"
         },
         function(data, menu)
             local name = data.value
