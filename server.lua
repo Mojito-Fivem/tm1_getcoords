@@ -1,6 +1,4 @@
-local Webhook = 'https://discordapp.com/api/webhooks/668495433605316639/3StSLNZRRIPmq6IM8c_dEu67MPbMODhTEqSh_tkpl66X8GIp6b4QfEG-NlxOzpOcvzs4'
-
-local SystemName = 'Boot Coords'
+local Webhook = 'https://discordapp.com/api/webhooks/748228769248051310/oxTGac9zAuyE_V7n8VKxi-awZrTe4l_qY1Pvu68Bk_SfWw9hVDLLz6PM5MB3GW3PV9v3'
 
 RegisterCommand("gc", function(source, args, rawCommand)
     local source = source
@@ -14,20 +12,8 @@ end, true)
 
 RegisterServerEvent('tm1_getcoords:print')
 AddEventHandler('tm1_getcoords:print', function(msg)
-    ToDiscord(SystemName, '```css\n '..msg..'\n```')
+    sendToDiscord(16753920,"Coords",msg,"Mojito's Easy Coords")
 end)
-
-function ToDiscord(Name, Message, Image)
-	if Message == nil or Message == '' then
-		return false
-	end
-	
-	if Image then
-		PerformHttpRequest(Webhook, function(Error, Content, Head) end, 'POST', json.encode({username = Name, content = Message, avatar_url = Image}), { ['Content-Type'] = 'application/json' })
-	else
-		PerformHttpRequest(Webhook, function(Error, Content, Head) end, 'POST', json.encode({username = Name, content = Message}), { ['Content-Type'] = 'application/json' })
-	end
-end
 
 function stringsplit(input, seperator)
 	if seperator == nil then
@@ -43,3 +29,18 @@ function stringsplit(input, seperator)
 	
 	return t
 end
+
+function sendToDiscord(color, name, message, footer)
+	local embed = {
+		  {
+			  ["color"] = color,
+			  ["title"] = "**".. name .."**",
+			  ["description"] = message,
+			  ["footer"] = {
+				  ["text"] = footer,
+			  },
+		  }
+	  }
+  
+	PerformHttpRequest(Webhook, function(err, text, headers) end, 'POST', json.encode({username = name, embeds = embed}), { ['Content-Type'] = 'application/json' })
+  end
