@@ -1,4 +1,4 @@
-local Webhook = 'https://discordapp.com/api/webhooks/748228769248051310/oxTGac9zAuyE_V7n8VKxi-awZrTe4l_qY1Pvu68Bk_SfWw9hVDLLz6PM5MB3GW3PV9v3'
+local Webhook = ''
 
 RegisterCommand("gc", function(source, args, rawCommand)
     local source = source
